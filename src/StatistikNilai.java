@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-public class StatistikNilaiKelas {
+public class StatistikNilai {
 
     private static final int SELESAI = -1;
 
@@ -64,3 +64,43 @@ public class StatistikNilaiKelas {
         }
         System.out.println("Tertinggi       : " + tertinggi);
         System.out.println("Terendah        : " + terendah);
+
+        int diatasRataRata = 0;
+        for (int nilai : daftar) {
+            if (nilai > rataRata) {
+                diatasRataRata++;
+            }
+        }
+        System.out.println("Di atas rata2   : " + diatasRataRata + " orang");
+
+        int[] jumlahGrade = new int[5];
+        for (int nilai : daftar) {
+            if (nilai >= 85) {
+                jumlahGrade[0]++;
+            } else if (nilai >= 70) {
+                jumlahGrade[1]++;
+            } else if (nilai >= 55) {
+                jumlahGrade[2]++;
+            } else if (nilai >= 40) {
+                jumlahGrade[3]++;
+            } else {
+                jumlahGrade[4]++;
+            }
+        }
+
+        char[] namaGrade = {'A', 'B', 'C', 'D', 'E'};
+        System.out.print("Distribusi      : ");
+        for (int i = 0; i < jumlahGrade.length; i++) {
+            System.out.print(namaGrade[i] + "=" + jumlahGrade[i] + (i < jumlahGrade.length - 1 ? " " : ""));
+        }
+        System.out.println();
+
+        ArrayList<Integer> terurut = new ArrayList<>(daftar);
+        Collections.sort(terurut);
+
+        System.out.println("Terurut         : " + terurut);
+        System.out.println("Urutan asli     : " + daftar);
+
+        scanner.close();
+    }
+}
